@@ -46,7 +46,7 @@ public class MyStepDef extends Steps {
             System.out.println("TRue");
             Assert.assertTrue(
                     openPage.getCourse(typeMoney, typeOper1)
-                            <
+                            >
                             openPage.getCourse(typeMoney, typeOper2)
             );
         }
