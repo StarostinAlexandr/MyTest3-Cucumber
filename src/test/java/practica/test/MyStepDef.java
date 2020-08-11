@@ -39,19 +39,22 @@ public class MyStepDef extends Steps {
     @Then("курс (.*) (.*) (.*) (.*)")
     public void курсВалютаЗначения1ОперацияЗначение2(String typeMoney, String typeOper1, String kvan, String typeOper2) {
         PageObjectOpen openPage = new PageObjectOpen(chromeDriver);
-        System.out.println(1000);
-        System.out.println(222);
+        System.out.println(typeOper1 +"--- " +openPage.getCourse(typeMoney, typeOper1));
+        System.out.println(typeOper2 + "--- " +openPage.getCourse(typeMoney, typeOper2));
+        System.out.println("kvan " + kvan);
         if (kvan.contains("<")) {
             System.out.println("TRue");
-//            openPage.getCourse(typeMoney, typeOper1)-
-//            openPage.getCourse(typeMoney, typeOper2)
-//            );
+            Assert.assertTrue(
+                    openPage.getCourse(typeMoney, typeOper1)
+                            <
+                            openPage.getCourse(typeMoney, typeOper2)
+            );
         }
     }
 
-//    @Then("вывести курсы валюты если курсы продажи больше курса покупки")
-    @Then("курсы")
-    public void  курсВалюты() {
+    //    @Then("вывести курсы валюты если курсы продажи больше курса покупки")
+    @Then("курсы (.*) (.*)")
+    public void курсВалюты() {
     }
     /*@Given("вывести список")
     public void вывестиСписок(List<String> arg) {

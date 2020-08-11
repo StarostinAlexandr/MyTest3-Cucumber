@@ -10,6 +10,10 @@ public class Steps {
 
     WebDriver chromeDriver;
 
+    public WebDriver getChromeDriver() {
+        return chromeDriver;
+    }
+
     @Step
     public void открытьХром(){
         System.setProperty("webdriver.chrome.driver","C:\\temp\\chromedriver.exe");

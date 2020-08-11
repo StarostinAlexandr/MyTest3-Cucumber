@@ -12,13 +12,13 @@ import java.util.Map;
 public class PageObjectOpen {
 
     private String selectorExchangeRates = "//*[@class='main-page-exchange main-page-info__card']";
-    private String selectorTableHeaders=".//tbody/tr[contains(@class,'header')]/td";
+    private String selectorTableHeaders = ".//tbody/tr[contains(@class,'header')]/td";
     private String selectorTableRows = ".//tbody/tr[contains(@class,'row')]";
 
     private WebDriver driver;
 
     private WebElement exchangeRates;
-    private List<Map<String,String>> collectExchangeRates = new ArrayList<>();
+    private List<Map<String, String>> collectExchangeRates = new ArrayList<>();
 
     public WebDriver getDriver() {
         return driver;
@@ -28,13 +28,13 @@ public class PageObjectOpen {
         return exchangeRates;
     }
 
-    private String mainURL="https://www.open.ru/";
+    private String mainURL = "https://www.open.ru/";
 
-    public PageObjectOpen(WebDriver driver){
-        this.driver=driver;
-        if(!driver.getTitle().contains("Открытие"))
+    public PageObjectOpen(WebDriver driver) {
+        this.driver = driver;
+        if (!driver.getTitle().contains("Открытие"))
             driver.get(mainURL);
-        exchangeRates= driver.findElement(By.xpath(selectorExchangeRates));
+        exchangeRates = driver.findElement(By.xpath(selectorExchangeRates));
     }
 
     public List<Map<String, String>> getCollectExchangeRates() {
@@ -42,13 +42,12 @@ public class PageObjectOpen {
         List<WebElement> tableRows = exchangeRates.findElements(By.xpath(selectorTableRows));
 
 
-
-        for(int i=0;i<tableRows.size();++i){
-            Map<String,String> collectRow = new HashMap<>();
-            for (int j=0;j<tableHeaders.size();++j){
+        for (int i = 0; i < tableRows.size(); ++i) {
+            Map<String, String> collectRow = new HashMap<>();
+            for (int j = 0; j < tableHeaders.size(); ++j) {
                 collectRow.put(
                         tableHeaders.get(j).getText(),
-                        tableRows.get(i).findElement(By.xpath("./td["+(j+1)+"]")).getText()
+                        tableRows.get(i).findElement(By.xpath("./td[" + (j + 1) + "]")).getText()
                 );
             }
             collectExchangeRates.add(collectRow);
@@ -58,12 +57,26 @@ public class PageObjectOpen {
     }
 
     public Double getCourse(String moneyType, String typeOper) {
+        System.out.println("moneyType " + moneyType);
+        System.out.println("typeOper " + typeOper);
+    /*    System.out.println("res 1 " + getCollectExchangeRates().stream()
+                .filter(x->x.get("Валюта обмена").contains(moneyType))
+                .findFirst().get().containsKey("Банк покупает")
+                );
+        System.out.println("res 1 " + getCollectExchangeRates().stream()
+                .filter(x->x.get("Валюта обмена").contains(moneyType))
+                .findFirst().get().get("Банк покупает")
+        );
+        System.out.println("res 2 " + getCollectExchangeRates().stream()
+                .filter(x->x.get("Валюта обмена").contains("USD"))
+                .findFirst().get().get("Банк " + typeOper).replace(",", ".")
+        );
 
-        return Double.parseDouble(
+        return 0.0;*/
+       return Double.parseDouble(
                 getCollectExchangeRates().stream()
-                        .filter(x->x.get("Валюта обмена").contains(moneyType))
+                        .filter(x -> x.get("Валюта обмена").contains(moneyType))
                         .findFirst()
-                        .get().get(typeOper).replace(",","."));
-
+                        .get().get("Банк " + typeOper).replace(",", "."));
     }
 }
