@@ -31,7 +31,7 @@ public class Steps {
         Assert.assertTrue(title.contains(checkTitle));
     }
 
-    @Step
+    @Step("Валюта {moneyType} операция {typeOper1} должна быть {kvan} операция {typeOper2}")
     public void проверитьКурсВалюты(String typeMoney, String typeOper1, String kvan, String typeOper2) {
         PageObjectOpen openPage = new PageObjectOpen(chromeDriver);
         System.out.println(typeOper1 + " " + typeMoney + " " + " по курсу " + openPage.getCourse(typeMoney, typeOper1));
@@ -39,7 +39,7 @@ public class Steps {
         System.out.println(typeOper2 + " " + typeMoney + " " + " по курсу " + openPage.getCourse(typeMoney, typeOper2));
 
         if (kvan.contains("<")) {
-            Assert.assertTrue(
+            Assert.assertTrue("Курс покупки не может быть больше курса продажи ",
                     openPage.getCourse(typeMoney, typeOper1)
                             <
                             openPage.getCourse(typeMoney, typeOper2)

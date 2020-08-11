@@ -41,13 +41,12 @@ public class PageObjectOpen {
         List<WebElement> tableHeaders = exchangeRates.findElements(By.xpath(selectorTableHeaders));
         List<WebElement> tableRows = exchangeRates.findElements(By.xpath(selectorTableRows));
 
-
-        for (int i = 0; i < tableRows.size(); ++i) {
+        for (WebElement tableRow : tableRows) {
             Map<String, String> collectRow = new HashMap<>();
             for (int j = 0; j < tableHeaders.size(); ++j) {
                 collectRow.put(
                         tableHeaders.get(j).getText(),
-                        tableRows.get(i).findElement(By.xpath("./td[" + (j + 1) + "]")).getText()
+                        tableRow.findElement(By.xpath("./td[" + (j + 1) + "]")).getText()
                 );
             }
             collectExchangeRates.add(collectRow);
@@ -57,22 +56,6 @@ public class PageObjectOpen {
     }
 
     public Double getCourse(String moneyType, String typeOper) {
-//        System.out.println("moneyType " + moneyType);
-//        System.out.println("typeOper " + typeOper);
-    /*    System.out.println("res 1 " + getCollectExchangeRates().stream()
-                .filter(x->x.get("Валюта обмена").contains(moneyType))
-                .findFirst().get().containsKey("Банк покупает")
-                );
-        System.out.println("res 1 " + getCollectExchangeRates().stream()
-                .filter(x->x.get("Валюта обмена").contains(moneyType))
-                .findFirst().get().get("Банк покупает")
-        );
-        System.out.println("res 2 " + getCollectExchangeRates().stream()
-                .filter(x->x.get("Валюта обмена").contains("USD"))
-                .findFirst().get().get("Банк " + typeOper).replace(",", ".")
-        );
-
-        return 0.0;*/
        return Double.parseDouble(
                 getCollectExchangeRates().stream()
                         .filter(x -> x.get("Валюта обмена").contains(moneyType))

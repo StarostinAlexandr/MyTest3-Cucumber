@@ -13,8 +13,6 @@ public class MyStepDef extends Steps {
 
     @Then("тайтл верен '(.*)'")
     public void тайтлВерен(String checkTitle) {
-//        String title = chromeDriver.getTitle();
-//        Assert.assertTrue(title.contains(checkTitle));
         проверитьТайтл(checkTitle);
     }
 
