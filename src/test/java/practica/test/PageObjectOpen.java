@@ -57,8 +57,8 @@ public class PageObjectOpen {
     }
 
     public Double getCourse(String moneyType, String typeOper) {
-        System.out.println("moneyType " + moneyType);
-        System.out.println("typeOper " + typeOper);
+//        System.out.println("moneyType " + moneyType);
+//        System.out.println("typeOper " + typeOper);
     /*    System.out.println("res 1 " + getCollectExchangeRates().stream()
                 .filter(x->x.get("Валюта обмена").contains(moneyType))
                 .findFirst().get().containsKey("Банк покупает")
