@@ -2,12 +2,7 @@ package practica.test;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import io.cucumber.datatable.DataTable;
 import org.junit.Assert;
-
-import java.util.List;
-import java.util.Map;
 
 public class MyStepDef extends Steps {
     @Given("перейти на сайт '(.*)'")
@@ -27,6 +22,37 @@ public class MyStepDef extends Steps {
         закрытьХром();
     }
 
+
+   /* @Given("курс (.*) (.*) (.*) (.*)")
+    public void курсВалютаЗначения1ОперацияЗначение2(String typeMoney, String typeOper1, String kvan, String typeOper2) {
+        PageObjectOpen openPage = new PageObjectOpen(chromeDriver);
+        System.out.print(1000);
+        System.out.print(222);
+//        if (kvan == "<") {
+//            System.out.println(
+//            openPage.getCourse(typeMoney, typeOper1)-
+//            openPage.getCourse(typeMoney, typeOper2)
+//            );
+//        }
+    }*/
+
+    @Then("курс (.*) (.*) (.*) (.*)")
+    public void курсВалютаЗначения1ОперацияЗначение2(String typeMoney, String typeOper1, String kvan, String typeOper2) {
+        PageObjectOpen openPage = new PageObjectOpen(chromeDriver);
+        System.out.println(1000);
+        System.out.println(222);
+        if (kvan.contains("<")) {
+            System.out.println("TRue");
+//            openPage.getCourse(typeMoney, typeOper1)-
+//            openPage.getCourse(typeMoney, typeOper2)
+//            );
+        }
+    }
+
+//    @Then("вывести курсы валюты если курсы продажи больше курса покупки")
+    @Then("курсы")
+    public void  курсВалюты() {
+    }
     /*@Given("вывести список")
     public void вывестиСписок(List<String> arg) {
         System.out.println(arg);

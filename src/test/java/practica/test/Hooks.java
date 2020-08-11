@@ -5,7 +5,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class Hooks {
-    @Before(order = 1)
+   /* @Before(order = 1)
     public void start_01(){
         System.out.println("start_01");
     }
@@ -23,7 +23,7 @@ public class Hooks {
     @After(order = 2)
     public void end_02(){
         System.out.println("end_02");
-    }
+    }*/
 /*
     @Before(value = "@correct", order = 3)
     public void customBefore() {

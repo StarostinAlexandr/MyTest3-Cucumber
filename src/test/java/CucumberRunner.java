@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
         plugin = {"io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "pretty", "json:target/cucumber-report/report.json"},
         features="src/test/java/features",
         glue = "practica.test",
-        tags = {"@otladish"}
+        tags = {"@otladish2"}
 )
 public class CucumberRunner {
 }
